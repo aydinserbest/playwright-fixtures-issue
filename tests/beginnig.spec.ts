@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('Get test tags', async ({ request }) => {
     const tagsResponse = await request.get('https://conduit-api.bondaracademy.com/api/tags')
     const tagsResponseJSON = await tagsResponse.json()
-    console.log(tagsResponseJSON)
+    //console.log(tagsResponseJSON)
     expect(tagsResponse.status()).toEqual(200)
     expect(tagsResponseJSON.tags.length).toBeLessThanOrEqual(10)
     expect(tagsResponseJSON.tags[0]).toEqual('Test')
@@ -12,14 +12,14 @@ test('Get test tags', async ({ request }) => {
 test('Get all articles', async ({ request }) => {
     const articleResponse = await request.get('https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0')
     const articleResponseJSON = await articleResponse.json()
-    console.log(articleResponseJSON)
+    //console.log(articleResponseJSON)
     expect(articleResponseJSON.articlesCount).toEqual(10)
     expect(articleResponseJSON.articles[1].title).toContain('pre-recorded')
 });
 test('Get articles', async ({ request }) => {
     await request.get('https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0')
         .then(response => response.json()) // yanıt geldi, JSON'a çeviriyoruz
-        .then(data => console.log(data)); // JSON verisini konsola yazdırıyoruz
+        //.then(data => console.log(data)); // JSON verisini konsola yazdırıyoruz
 
     /*
     data => console.log(data)) de, data yerine herhangi bir tanım-isim yazabilirdik,
@@ -56,7 +56,7 @@ test('create and delete article', async ({ request }) => {
 })
     
     const articleResponse = await createArticle.json()
-    console.log(articleResponse)
+    //console.log(articleResponse)
     expect(articleResponse.article.author.username).toEqual('Aydin34')
     const slugId = articleResponse.article.slug
 
