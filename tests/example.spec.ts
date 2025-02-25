@@ -13,18 +13,18 @@ test.beforeAll('run before all', async({request}) => {
 test.only('Get Test Tags', async ({ request }) => {
   const tagsResponse = await request.get('https://conduit-api.bondaracademy.com/api/tags')
   const tagsResponseJSON = await tagsResponse.json()
-  expect(tagsResponse.status()).toEqual(200)
-  expect(tagsResponseJSON.tags[0]).toEqual('Test')
+  expect(tagsResponse.status()).toBe(200)
+  expect(tagsResponseJSON.tags[0]).toBe('Test')
   expect(tagsResponseJSON.tags.length).toBeLessThanOrEqual(10)
 });
 
 test.skip('Get All Articles', async ({ request }) => {
   const articleResponse = await request.get('https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0')
   const articleResponseJSON = await articleResponse.json()
-  expect(articleResponse.status()).toEqual(200)
+  expect(articleResponse.status()).toBe(200)
   expect(articleResponseJSON.articles.length).toBeLessThanOrEqual(10)
-  expect(articleResponseJSON.articlesCount).toEqual(10)
-  expect(articleResponseJSON.articles[0].title).toEqual('Discover Bondar Academy: Your Gateway to Efficient Learning')
+  expect(articleResponseJSON.articlesCount).toBe(10)
+  expect(articleResponseJSON.articles[0].title).toBe('Discover Bondar Academy: Your Gateway to Efficient Learning')
   const firstArticleTitle = articleResponseJSON.articles[0].title
   expect(firstArticleTitle).toContain('Bondar Academy')
   expect(firstArticleTitle).toMatch('Bondar Academy')
@@ -46,7 +46,7 @@ test.fixme('Create article', async ({ request }) => {
   })
   const newArticleResponseJSON = await newArticleResponse.json()
   const newArticleTitle = newArticleResponseJSON.article.title
-  expect(newArticleTitle).toEqual('Test TWO')
+  expect(newArticleTitle).toBe('Test TWO')
   const slugId = newArticleResponseJSON.article.slug
 
   const deletedArticle = await request.delete(`https://conduit-api.bondaracademy.com/api/articles/${slugId}`, {
@@ -55,7 +55,7 @@ test.fixme('Create article', async ({ request }) => {
     }
 
   })
-  expect(deletedArticle.status()).toEqual(204)
+  expect(deletedArticle.status()).toBe(204)
 });
 
 test('Create, Update and Delete article', async ({ request }) => {
@@ -74,7 +74,7 @@ test('Create, Update and Delete article', async ({ request }) => {
   })
 
   const newArticleResponseJSON = await newArticleResponse.json()
-  expect(newArticleResponseJSON.article.title).toEqual('Test NEW ARTICLE')
+  expect(newArticleResponseJSON.article.title).toBe('Test NEW ARTICLE')
   const newArticleSlug = newArticleResponseJSON.article.slug
 
   const updatedArticle = await request.put(`https://conduit-api.bondaracademy.com/api/articles/${newArticleSlug}`, {
@@ -93,7 +93,7 @@ test('Create, Update and Delete article', async ({ request }) => {
 
   })
   const updatedArticlejson = await updatedArticle.json()
-  expect(updatedArticlejson.article.title).toEqual('Test NEW ARTICLE UPDATED')
+  expect(updatedArticlejson.article.title).toBe('Test NEW ARTICLE UPDATED')
 
   const updatedArticleSlag = updatedArticlejson.article.slug
   const getNewArticles = await request.get('https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0',
@@ -104,7 +104,7 @@ test('Create, Update and Delete article', async ({ request }) => {
     }
   )
   const getNewArticlesJSON = await getNewArticles.json()
-  expect(getNewArticlesJSON.articles[0].title).toEqual('Test NEW ARTICLE UPDATED')
+  expect(getNewArticlesJSON.articles[0].title).toBe('Test NEW ARTICLE UPDATED')
 
   const deletedResponse = await request.delete(`https://conduit-api.bondaracademy.com/api/articles/${updatedArticleSlag}`, {
     headers: {
@@ -112,6 +112,6 @@ test('Create, Update and Delete article', async ({ request }) => {
     }
 
   })
-  expect(deletedResponse.status()).toEqual(204)
+  expect(deletedResponse.status()).toBe(204)
 
 });
