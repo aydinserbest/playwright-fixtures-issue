@@ -12,7 +12,7 @@ test('Get test tags', async ({ request }) => {
 test('Get all articles', async ({ request }) => {
     const articleResponse = await request.get('https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0')
     const articleResponseJSON = await articleResponse.json()
-    //console.log(articleResponseJSON)
+    console.log(articleResponseJSON)
     expect(articleResponseJSON.articlesCount).toEqual(10)
     expect(articleResponseJSON.articles[1].title).toContain('pre-recorded')
 });

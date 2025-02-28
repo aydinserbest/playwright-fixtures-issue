@@ -9,6 +9,9 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.4"
+    "@types/node": "^22.13.4",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "genson-js": "^0.0.8"
   }
 }
