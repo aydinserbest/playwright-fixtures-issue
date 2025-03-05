@@ -15,9 +15,9 @@ test.beforeAll("run before all", async ({ api, config }) => {
 test("Get Articles", async ({ api }) => {
   const response = await api
     .path("/articles")
-    .headers({ Authorization: authToken })
+    //.headers({ Authorization: authToken })
     .params({ limit: 10, offset: 0 })
-    //.clearAuth()
+    .clearAuth()
     .getRequest(200);
     await expect(response).shouldMatchSchema('articles', 'GET_articles');
   expect(response.articles.length).shouldBeLessThanOrEqual(10);
